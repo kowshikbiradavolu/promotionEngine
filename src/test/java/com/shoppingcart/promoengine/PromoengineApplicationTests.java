@@ -5,8 +5,10 @@ import com.shoppingcart.promoengine.entities.Promotion;
 import com.shoppingcart.promoengine.request.CheckoutRequest;
 import com.shoppingcart.promoengine.response.CheckoutResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
 class PromoengineApplicationTests {
 
 
 		@Test
+		@Order(1)
 		void testCreateItem() {
 		List<Item> itemList = new ArrayList<>();
 		Item item = new Item();
@@ -47,6 +51,7 @@ class PromoengineApplicationTests {
 	}
 
 		@Test
+		@Order(2)
 		void testgetItem() {
 		ResponseEntity<Item[]> postResponse = restTemplate().getForEntity(getRootUrl() + "/pe-items/item", Item[].class);
 		Assert.notNull(postResponse, "Received Null Response");
@@ -54,6 +59,7 @@ class PromoengineApplicationTests {
 	}
 
 		@Test
+		@Order(3)
 		void testCreatePromotion() {
 		List<Promotion> promotionList = new ArrayList<>();
 		Promotion promotion = new Promotion();
@@ -81,6 +87,7 @@ class PromoengineApplicationTests {
 	}
 
 		@Test
+		@Order(4)
 		void testFinalCartPrice(){
 
 		List<CheckoutRequest> checkoutRequestList = new ArrayList<>();
