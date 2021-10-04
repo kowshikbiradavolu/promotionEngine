@@ -17,18 +17,18 @@ public class ItemController {
     ItemService itemService;
 
     @GetMapping("/item")
-    private List<Item> getAllItems(){
-    return itemService.getAllItems();
+    private ResponseEntity<List<Item>> getAllItems(){
+    return ResponseEntity.status(HttpStatus.OK).body(itemService.getAllItems());
     }
 
     @GetMapping("/item/{skuid}")
-    private Item getItem(@PathVariable String skuid){
-    return itemService.getItem(skuid);
+    private ResponseEntity<Item> getItem(@PathVariable String skuid){
+    return ResponseEntity.status(HttpStatus.OK).body(itemService.getItem(skuid));
     }
 
     @PostMapping("/item")
-    private List<Item> insertItem(@RequestBody List<Item> item){
-       return itemService.saveItemsList(item);
+    private ResponseEntity<List<Item>> insertItem(@RequestBody List<Item> item){
+       return ResponseEntity.status(HttpStatus.OK).body(itemService.saveItemsList(item));
     }
 
     @DeleteMapping("/item")
